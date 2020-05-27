@@ -17,6 +17,12 @@ def y_predict():
     prediction = model.predict(x_test)
     print(prediction)
     output=prediction[0]
-    return render_template('index.html', prediction_text='{}'.format(output))
-if __name__ == "__main__":
+    
+    if(output==0):
+        return render_template('index.html', prediction_text='This is a suspicious website')
+    elif(output==-1):
+         return render_template('index.html', prediction_text='This is a Phishing website')
+    else:
+        return render_template('index.html', prediction_text='This is a legitimate website')
+if __name__=="__main__":
     app.run(debug=True)
